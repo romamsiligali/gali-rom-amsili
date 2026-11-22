@@ -37,13 +37,37 @@ var EXPLAIN={
 'אור וקול שונים באופן התפשטותם, אך שניהם מסוגלים להעביר אנרגיה.','האור מתקדם בריק; הקול זקוק לתווך חומרי.','בקומקום החשמל מומר בעיקר לאנרגיה תרמית המחממת את המים.','אות חשמלי מפעיל את הרמקול וגורם לממברנה לרטוט וליצור קול.','עוצמה קשורה למשרעת; גובה הצליל קשור לתדר.','טורבינה מסובבת מחולל לצורך הפקת אנרגיה חשמלית.','דוד שמש מחמם מים באמצעות אנרגיית הקרינה מן השמש.','בפנס האנרגיה הכימית מומרת לחשמל, ובהמשך לאור ולאנרגיה תרמית.'
 ]
 };
-/* הצגת מקצועות פעילים בלבד */
+/* מסך הבית: כרטיסי מקצוע מאוירים, אינטראקטיביים ונגישים. */
+var SUBJECT_DISPLAY={
+ "שפה":{icon:"✏️",subtitle:"מילים, קריאה וכתיבה",tone:"language"},
+ "היסטוריה":{icon:"🏛️",subtitle:"סיפורים ומסעות בזמן",tone:"history"},
+ "תנ\"ך":{icon:"📜",subtitle:"סיפורים, דמויות וערכים",tone:"bible"},
+ "מורשת":{icon:"🏰",subtitle:"מקומות, זהות וסיפורים",tone:"heritage"},
+ "תקשורת":{icon:"🎙️",subtitle:"מסרים, שיח והקשבה",tone:"communication"},
+ "מדעים":{icon:"🔬",subtitle:"חוקרים, מגלים ומתנסים",tone:"science"}
+};
 home=function(){
  var active=SUBJECTS.filter(s=>s.topics&&s.topics.length>0);
- var h="<h2>בוחרים מקצוע ומתחילים ללמוד</h2><p class='note'>לומדים · מתרגלים · בודקים ומבינים</p><div class='grid'>";
- active.forEach((s,i)=>{h+="<button class='card "+s.color+"' data-i='"+i+"'>"+safeText(s.name)+"</button>"});
- show(h+"</div>");
- app.querySelectorAll(".card").forEach(b=>{b.onclick=function(){var s=active[+b.dataset.i];go(function(){subject(s)},s.name)}})
+ var h="<section class='home-screen' aria-label='מסך בחירת מקצוע'>";
+ h+="<div class='home-hero'><span class='hero-orbit hero-orbit-a' aria-hidden='true'></span><span class='hero-orbit hero-orbit-b' aria-hidden='true'></span>";
+ h+="<span class='hero-tag'>✦ כיתה ו׳1</span>";
+ h+="<span class='hero-sparkle hero-sparkle-a' aria-hidden='true'>✳</span><span class='hero-sparkle hero-sparkle-b' aria-hidden='true'>✧</span>";
+ h+="<div class='hero-emblem' aria-hidden='true'><span class='hero-emblem-book'>📚</span><span class='hero-emblem-star'>★</span></div>";
+ h+="<h2>תרגול <span>עם גלי</span></h2><p class='hero-description'>לומדים, מגלים ומתחזקים בקצב שלנו</p></div>";
+ h+="<div class='home-section-heading'><h2>לאן מתקדמים היום?</h2><p>בוחרים מקצוע ויוצאים לדרך</p></div>";
+ h+="<div class='grid home-grid'>";
+ active.forEach((s,i)=>{
+  var d=SUBJECT_DISPLAY[s.name]||{icon:"📚",subtitle:"לומדים ומתרגלים",tone:"general"};
+  h+="<button class='card subject-tile tone-"+d.tone+"' data-i='"+i+"' aria-label='"+safeText(s.name)+": "+safeText(d.subtitle)+"'>";
+  h+="<span class='tile-glow' aria-hidden='true'></span><span class='tile-icon' aria-hidden='true'>"+d.icon+"</span>";
+  h+="<span class='tile-title'>"+safeText(s.name)+"</span><span class='tile-subtitle'>"+safeText(d.subtitle)+"</span>";
+  h+="<span class='tile-arrow' aria-hidden='true'>←</span></button>";
+ });
+ h+="</div>";
+ h+="<div class='home-benefits'><span>📚 הסברים</span><span>🎯 תרגול ומשוב</span><span>🗂️ כרטיסיות</span><span>📝 דפי עבודה</span></div>";
+ h+="</section>";
+ show(h);
+ app.querySelectorAll(".subject-tile").forEach(b=>{b.onclick=function(){var s=active[+b.dataset.i];go(function(){subject(s)},s.name)}});
 };
 subject=function(s){
  var h="<h2>"+safeText(s.name)+"</h2><p class='note'>בחרו שיעור מתוך הנושאים</p>";
