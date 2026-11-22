@@ -7,6 +7,7 @@ var target=null;
 subjects.forEach(s=>s.topics.forEach(t=>t.lessons.forEach(l=>{if(l.name===TITLE)target=l})));
 if(!target)return;
 target.novice=true;
+target.status='upcoming';
 target.learningStages=[
  {title:'פותחים בשאלה: מהו משפט?',
   text:'משפט מוסר לנו רעיון. כדי לזהות את מבנה המשפט, כדאי לשאול קודם: מה נאמר בו, ומהי הפעולה או ההתרחשות המרכזית? במשפטים שנלמד כאן נסתכל בעיקר על הפעלים ועל הקשר בין חלקי המשפט.',
