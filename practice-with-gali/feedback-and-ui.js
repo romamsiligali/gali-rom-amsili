@@ -37,39 +37,76 @@ var EXPLAIN={
 'אור וקול שונים באופן התפשטותם, אך שניהם מסוגלים להעביר אנרגיה.','האור מתקדם בריק; הקול זקוק לתווך חומרי.','בקומקום החשמל מומר בעיקר לאנרגיה תרמית המחממת את המים.','אות חשמלי מפעיל את הרמקול וגורם לממברנה לרטוט וליצור קול.','עוצמה קשורה למשרעת; גובה הצליל קשור לתדר.','טורבינה מסובבת מחולל לצורך הפקת אנרגיה חשמלית.','דוד שמש מחמם מים באמצעות אנרגיית הקרינה מן השמש.','בפנס האנרגיה הכימית מומרת לחשמל, ובהמשך לאור ולאנרגיה תרמית.'
 ]
 };
-/* מסך הבית: כרטיסי מקצוע מאוירים, אינטראקטיביים ונגישים. */
-var SUBJECT_DISPLAY={
- "שפה":{icon:"✏️",subtitle:"מילים, קריאה וכתיבה",tone:"language"},
- "היסטוריה":{icon:"🏛️",subtitle:"סיפורים ומסעות בזמן",tone:"history"},
- "תנ\"ך":{icon:"📜",subtitle:"סיפורים, דמויות וערכים",tone:"bible"},
- "מורשת":{icon:"🏰",subtitle:"מקומות, זהות וסיפורים",tone:"heritage"},
- "תקשורת":{icon:"🎙️",subtitle:"מסרים, שיח והקשבה",tone:"communication"},
- "מדעים":{icon:"🔬",subtitle:"חוקרים, מגלים ומתנסים",tone:"science"}
-};
-home=function(){
- var active=SUBJECTS.filter(s=>s.topics&&s.topics.length>0);
- var order=['שפה','מדעים','היסטוריה','תנ"ך','מורשת','תקשורת'];
- active.sort((a,b)=>order.indexOf(a.name)-order.indexOf(b.name));
- var h="<section class='home-screen' aria-label='מסך בחירת מקצוע'>";
- h+="<div class='home-hero'><span class='hero-orbit hero-orbit-a' aria-hidden='true'></span><span class='hero-orbit hero-orbit-b' aria-hidden='true'></span>";
- h+="<span class='hero-tag'>✦ כיתה ו׳1</span>";
- h+="<span class='hero-sparkle hero-sparkle-a' aria-hidden='true'>✳</span><span class='hero-sparkle hero-sparkle-b' aria-hidden='true'>✧</span>";
- h+="<div class='hero-emblem' aria-hidden='true'><span class='hero-emblem-book'>📚</span><span class='hero-emblem-star'>★</span></div>";
- h+="<h2>תרגול <span>עם גלי</span></h2><p class='hero-description'>לומדים, מגלים ומתחזקים בקצב שלנו</p></div>";
- h+="<div class='home-section-heading'><h2>לאן מתקדמים היום?</h2><p>בוחרים מקצוע ויוצאים לדרך</p></div>";
- h+="<div class='grid home-grid'>";
- active.forEach((s,i)=>{
-  var d=SUBJECT_DISPLAY[s.name]||{icon:"📚",subtitle:"לומדים ומתרגלים",tone:"general"};
-  h+="<button class='card subject-tile tone-"+d.tone+"' data-i='"+i+"' aria-label='"+safeText(s.name)+": "+safeText(d.subtitle)+"'>";
-  h+="<span class='tile-glow' aria-hidden='true'></span><span class='tile-icon' aria-hidden='true'>"+d.icon+"</span>";
-  h+="<span class='tile-title'>"+safeText(s.name)+"</span><span class='tile-subtitle'>"+safeText(d.subtitle)+"</span>";
-  h+="<span class='tile-arrow' aria-hidden='true'>←</span></button>";
+/* מסך הבית: האיור המקורי שאושר עם אזורי לחיצה אמיתיים ונגישים. */
+var ARTWORK_SUBJECTS=[
+ {name:'מדעים',pos:'science'},
+ {name:'שפה',pos:'hebrew'},
+ {name:'היסטוריה',pos:'history'},
+ {name:'תנ"ך',pos:'bible'},
+ {name:'תקשורת',pos:'communication'},
+ {name:'מורשת',pos:'heritage'}
+];
+var SUBJECT_ORDER=['שפה','מדעים','היסטוריה','תנ"ך','מורשת','תקשורת'];
+function orderedSubjects(){
+ return SUBJECTS.filter(s=>s.topics&&s.topics.length>0).sort((a,b)=>SUBJECT_ORDER.indexOf(a.name)-SUBJECT_ORDER.indexOf(b.name));
+}
+function assignmentHub(){
+ var active=orderedSubjects();
+ var h="<div class='assignment-hub'><h2>📝 משימות ותרגול</h2><p class='note'>בחרו מקצוע ושיעור כדי לפתוח דף עבודה. נושאים שטרם נלמדו מיועדים להכנה בלבד, ואין צורך להגיש אותם עד להנחיית המורה.</p>";
+ active.forEach((s,si)=>{
+  h+="<section class='panel'><h3 style='margin:0 0 12px'>"+safeText(s.name)+"</h3>";
+  s.topics.forEach((t,ti)=>{
+   h+="<p class='assignment-topic'>"+safeText(t.name)+"</p>";
+   t.lessons.forEach((l,li)=>{
+    var label=l.status==='upcoming'?' · טרם נלמד':l.status==='future'?' · בהמשך':'';
+    h+="<button class='opt' data-s='"+si+"' data-t='"+ti+"' data-l='"+li+"' aria-label='דפי עבודה בנושא "+safeText(l.name)+label+"'>"+safeText(l.name)+(label?"<small class='assignment-status'>"+label+"</small>":"")+"</button>";
+   });
+  });
+  h+="</section>";
  });
  h+="</div>";
- h+="<div class='home-benefits'><span>📚 הסברים</span><span>🎯 תרגול ומשוב</span><span>🗂️ כרטיסיות</span><span>📝 דפי עבודה</span></div>";
- h+="</section>";
+ show(h,"משימות");
+ app.querySelectorAll(".assignment-hub .opt").forEach(b=>{
+  b.onclick=function(){
+   var s=active[+b.dataset.s];
+   var l=s.topics[+b.dataset.t].lessons[+b.dataset.l];
+   go(function(){sheet(l)},"דפי עבודה");
+  };
+ });
+}
+home=function(){
+ var active=orderedSubjects();
+ var h="<div class='illustrated-home'>";
+ h+="<img class='illustrated-image' src='./illustrated-home.png?v=20261122q' width='941' height='1672' alt='תרגול עם גלי. מסך הבית המאויר כולל שישה מקצועות ופעולות למשימות ולהגשות.' decoding='async' fetchpriority='high'>";
+ ARTWORK_SUBJECTS.forEach((item,i)=>{
+  if(!active.some(s=>s.name===item.name))return;
+  h+="<button class='illustrated-hit art-"+item.pos+" art-subject' data-k='"+i+"' type='button' title='פתיחת "+safeText(item.name)+"' aria-label='פתיחת מקצוע "+safeText(item.name)+"'><span class='sr-only'>"+safeText(item.name)+"</span></button>";
+ });
+ h+="<button class='illustrated-hit art-practice' id='artPractice' type='button' title='משימות לתרגול עצמאי' aria-label='פתיחת משימות ותרגול עצמאי'></button>";
+ h+="<button class='illustrated-hit art-tasks' id='artTasks' type='button' title='משימות' aria-label='בחירת משימות ודפי עבודה'></button>";
+ h+="<a class='illustrated-hit art-submit' href='https://docs.google.com/forms/d/e/1FAIpQLSeJqbkwGLAefPJzrXW9K_KC2vYOq_Nbshb716q7SizA1OfLBA/viewform' target='_blank' rel='noopener noreferrer' title='הגשת עבודות למורה' aria-label='פתיחת טופס הגשת עבודות למורה'></a>";
+ h+="<div class='illustrated-fallback' hidden><h2>בוחרים מקצוע</h2><div class='grid'>";
+ ARTWORK_SUBJECTS.forEach((item,i)=>{
+  if(active.some(s=>s.name===item.name))h+="<button class='card c"+i%5+" art-subject' type='button' data-k='"+i+"'>"+safeText(item.name)+"</button>";
+ });
+ h+="</div><button class='big blue' id='fallbackTasks'>📝 משימות לתרגול</button></div></div>";
  show(h);
- app.querySelectorAll(".subject-tile").forEach(b=>{b.onclick=function(){var s=active[+b.dataset.i];go(function(){subject(s)},s.name)}});
+ app.querySelectorAll(".art-subject").forEach(b=>{
+  b.onclick=function(){
+   var wanted=ARTWORK_SUBJECTS[+b.dataset.k];
+   var s=active.find(x=>x.name===wanted.name);
+   if(s)go(function(){subject(s)},s.name);
+  };
+ });
+ document.getElementById('artPractice').onclick=()=>go(assignmentHub,"משימות");
+ document.getElementById('artTasks').onclick=()=>go(assignmentHub,"משימות");
+ var fb=document.getElementById('fallbackTasks');
+ if(fb)fb.onclick=()=>go(assignmentHub,"משימות");
+ var img=app.querySelector(".illustrated-image");
+ if(img)img.addEventListener("error",()=>{
+  var fallback=app.querySelector(".illustrated-fallback");
+  if(fallback){fallback.hidden=false;img.style.display="none";app.classList.add("artwork-unavailable")}
+ });
 };
 subject=function(s){
  var h="<h2>"+safeText(s.name)+"</h2><p class='note'>בחרו שיעור מתוך הנושאים</p>";
