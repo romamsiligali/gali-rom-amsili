@@ -65,7 +65,7 @@ lesson=function(s,l){
  if(l.overview&&l.overview.length){
   h+="<div class='panel'><h3 style='margin:0 0 8px'>מה נלמד?</h3><ul style='padding-right:22px;margin:6px 0'>";
   l.overview.forEach(x=>h+="<li style='margin:5px 0'>"+safeText(x)+"</li>");h+="</ul>";
-  if(s.name==='תנ"ך"&&l.name.includes("יהושע י׳")){
+  if(s.name==='תנ"ך'&&l.name.includes("יהושע י׳")){
    h+="<details style='margin-top:10px'><summary style='font-weight:700;cursor:pointer'>🔎 תזכורת קצרה מתחילת ספר יהושע</summary><ul style='padding-right:22px'>";
    bibleReview.forEach(x=>h+="<li>"+safeText(x)+"</li>");h+="</ul></details>";
   }
