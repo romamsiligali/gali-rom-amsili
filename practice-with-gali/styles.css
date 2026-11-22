@@ -103,3 +103,8 @@ h2{font-size:1.6rem;text-align:center;margin:6px 0 16px}
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
  .hw-footer{font-size:11px}
 }
+
+/* כפתור הגשת עבודות לטופס המוסדי */
+.hw-submit-link{display:block;text-align:center;background:#24864c;color:#fff;text-decoration:none;font-weight:800;font-family:inherit;font-size:1.15rem;line-height:1.35;border-radius:18px;padding:16px 12px;box-shadow:0 4px 0 rgba(0,0,0,.14);margin:10px 0 8px}
+.hw-submit-link:hover{background:#1e7040}
+.hw-submit-link:focus-visible{outline:4px solid #2563eb;outline-offset:3px}
