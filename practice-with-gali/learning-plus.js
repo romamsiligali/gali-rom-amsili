@@ -6,6 +6,7 @@ var subjects=SUBJECTS.filter(s=>s.name==='שפה');
 var target=null;
 subjects.forEach(s=>s.topics.forEach(t=>t.lessons.forEach(l=>{if(l.name===TITLE)target=l})));
 if(!target)return;
+subjects.forEach(s=>s.topics.forEach(t=>{if(t.lessons.includes(target))t.name='משפט פשוט, מחובר ומורכב (נובמבר)';}));
 target.novice=true;
 target.status='upcoming';
 target.learningStages=[
