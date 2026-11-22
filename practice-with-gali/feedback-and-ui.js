@@ -72,7 +72,7 @@ lesson=function(s,l){
   h+="</div>";
  }
  h+="<button class='big blue' id='learn'>📚 לומדים</button>";
- if(l.sources&&l.sources.length)h+="<button class='big red' id='watch'>▶ צפייה ומקורות</button>";
+ if(l.sources&&l.sources.length){var isViewing=l.sources.some(r=>r.kind==='video'||/סרטון|מצולם|מוקלט/.test(r.title+' '+r.provider));h+="<button class='big red' id='watch'>"+(isViewing?"▶ צפייה ומקורות":"📖 פסוקים ומקורות")+"</button>";}
  h+="<button class='big green' id='practice'>🎯 תרגול עם הסברים</button><button class='big purple' id='cards'>🗂️ כרטיסיות</button><button class='big blue' id='worksheet'>📝 דף עבודה</button>";
  show(h,l.name);
  document.getElementById("learn").onclick=()=>go(()=>readAny(l),"לומדים");
@@ -90,12 +90,12 @@ function readAny(l){
  show(h,"לומדים");
 }
 watch=function(l){
- var h="<h2>צופים ומבינים</h2><p class='note'>לחצו על המקור שבחרנו. הוא ייפתח בלשונית נפרדת ותוכלו לחזור לכאן לתרגול.</p>";
+ var isViewing=l.sources&&l.sources.some(r=>r.kind==='video'||/סרטון|מצולם|מוקלט/.test(r.title+' '+r.provider)); var h="<h2>"+(isViewing?"צופים ומבינים":"קוראים ומעמיקים")+"</h2><p class='note'>המקור ייפתח בלשונית נפרדת. חזרו לכאן כדי להמשיך ולתרגל.</p>";
  if(!l.sources||!l.sources.length){h+="<div class='panel'>לשיעור הזה אין כרגע סרטון מומלץ. אפשר ללמוד דרך ההסברים והכרטיסיות.</div>";}
  else l.sources.forEach(r=>{
   h+="<div class='panel'><h3>"+safeText(r.title)+"</h3><p class='note' style='text-align:right'>"+safeText(r.provider)+"</p>";
-  h+="<p>"+safeText(r.note||"")+"</p><a class='watch-link' href='"+safeText(r.url)+"' target='_blank' rel='noopener noreferrer'>▶ פתיחת המקור הנבחר</a>";
-  if(r.prompt)h+="<p><strong>שאלת צפייה:</strong> "+safeText(r.prompt)+"</p>";
+  h+="<p>"+safeText(r.note||"")+"</p><a class='watch-link' href='"+safeText(r.url)+"' target='_blank' rel='noopener noreferrer'>"+(r.kind==='reading'?"📖 קריאת המקור":"▶ פתיחת הסרטון או המקור")+"</a>";
+  if(r.prompt)h+="<p><strong>לחשיבה:</strong> "+safeText(r.prompt)+"</p>";
   h+="</div>";
  });
  show(h,"צפייה");
