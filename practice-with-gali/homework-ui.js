@@ -1,6 +1,7 @@
 /* שני דפי עבודה מלאים בכל שיעור, הדפסה ומענה עצמאי */
 (function(){
 "use strict";
+var FORM_SUBMISSION_URL="https://docs.google.com/forms/d/e/1FAIpQLSeJqbkwGLAefPJzrXW9K_KC2vYOq_Nbshb716q7SizA1OfLBA/viewform";
 var previousLesson=lesson;
 lesson=function(s,l){
  previousLesson(s,l);
@@ -24,7 +25,7 @@ sheet=function(l){
   var h="<div class='hw-picker noprint'><h2>משימות לבית</h2><p>התחילו בדף 1 כדי לתרגל את היסודות. לאחר מכן המשיכו לדף 2, שבו משימות חדשות ליישום, חשיבה והעמקה. בכל דף שאלות שונות.</p>";
   h+="<div class='hw-buttons'><button id='hwA' class='"+(current==="a"?"active":"")+"'>דף 1: יסודות · "+pages.a.length+" משימות</button>";
   h+="<button id='hwB' class='"+(current==="b"?"active":"")+"'>דף 2: העמקה · "+pages.b.length+" משימות</button></div>";
-  h+="<p class='note'>אפשר להקליד כאן או להדפיס. התשובות נשמרות במכשיר זה בלבד. עד שנחבר טופס הגשה מוסדי, יש לשמור את הדף כ-PDF ולשלוח לפי הנחיות המורה.</p></div>";
+  h+="<p class='note'>אפשר להקליד כאן או להדפיס. התשובות נשמרות במכשיר זה בלבד. כדי לשלוח למורה, שמרו את הדף כ-PDF והעלו אותו לטופס ההגשה המוסדי שבהמשך הדף.</p></div>";
   h+="<article class='hw-page'><h2>תרגול עם גלי</h2><p class='hw-subject'>"+safeText(l.name)+"</p><h3>"+title+"</h3>";
   h+="<div class='hw-identity'><span>שם: ________________________</span><span>תאריך: ______________</span></div>";
   h+="<p class='hw-instructions'><strong>הוראות:</strong> קראו את כל המשימות. כתבו תשובות מלאות, והסבירו כשמבקשים מכם לנמק. זמן עבודה משתנה לפי השאלות והקצב שלכם. אם המורה ביקשה את שני הדפים, בצעו תחילה את דף 1 ואחריו את דף 2.</p>";
@@ -35,8 +36,12 @@ sheet=function(l){
     h+="<div class='hw-print-answer' data-typed='"+i+"'></div><div class='hw-lines'></div></li>";
   });
   h+="</ol><div class='hw-footer'>בדקו: האם עניתם על כל סעיפי השאלה? האם נימקתם כשנדרשת הנמקה?</div></article>";
-  h+="<div class='hw-bottom noprint'><button class='big blue' id='hwPrint' style='font-size:1.18rem;padding:14px'>🖨️ הדפיסו או שמרו כ-PDF</button>";
-  h+="<p class='note'>בחלון ההדפסה ניתן לבחור ״שמירה כ-PDF״. אם כתבתם כאן, התשובות יופיעו גם בהדפסה.</p></div>";
+  h+="<div class='hw-bottom noprint'><h3 style='text-align:right;margin:0 0 10px'>סיימתם? כך מגישים למורה</h3>";
+  h+="<p class='note' style='text-align:right'>1. לחצו על הכפתור הכחול ובחרו בחלון ההדפסה ״שמירה כ-PDF״. ודאו שהקובץ נשמר במכשיר. אם הקלדתם תשובות, הן יופיעו בקובץ.</p>";
+  h+="<button class='big blue' id='hwPrint' style='font-size:1.18rem;padding:14px'>🖨️ שלב 1: שמירת הדף כ-PDF</button>";
+  h+="<p class='note' style='text-align:right;margin-top:16px'>2. פתחו את טופס ההגשה, בחרו את המקצוע ואת שם השיעור, ציינו את מספר הדף וצרפו את קובץ ה-PDF ששמרתם. רק לחיצה על ״שליחה״ בטופס משלימה את ההגשה.</p>";
+  h+="<a class='hw-submit-link' href='"+FORM_SUBMISSION_URL+"' target='_blank' rel='noopener noreferrer' aria-label='שלב 2: פתיחת טופס הגשת העבודה למורה'>📤 שלב 2: הגשת העבודה למורה</a>";
+  h+="<p class='note' style='text-align:right'>הטופס נפתח בלשונית חדשה ומחייב כניסה לחשבון Google המוסדי. פתיחת הטופס לבדה אינה שולחת את העבודה.</p></div>";
   show(h,"דפי עבודה");
   document.getElementById("hwA").onclick=()=>{if(current!=="a"){current="a";render()}};
   document.getElementById("hwB").onclick=()=>{if(current!=="b"){current="b";render()}};
