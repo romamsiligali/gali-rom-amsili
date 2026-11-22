@@ -118,12 +118,12 @@ header h1{text-shadow:none;letter-spacing:.15px}
 .card small{color:#fff;opacity:.95}
 .card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(33,60,100,.20)}
 .card:active{transform:translateY(1px)}
-.c0{background:linear-gradient(145deg,#d84d1a,#b93f14)}
+.c0{background:linear-gradient(145deg,#c84b19,#b93f14)}
 .c1{background:linear-gradient(145deg,#7b49dd,#6134bb)}
-.c2{background:linear-gradient(145deg,#2380cd,#15639f)}
+.c2{background:linear-gradient(145deg,#1c71b8,#15639f)}
 .c3{background:linear-gradient(145deg,#cb3988,#a82871)}
-.c4{background:linear-gradient(145deg,#079a81,#087562)}
-.grid>.card:nth-child(6){background:linear-gradient(145deg,#0b8fa8,#076d8d)}
+.c4{background:linear-gradient(145deg,#09846f,#087562)}
+.grid>.card:nth-child(6){background:linear-gradient(145deg,#08788f,#076d8d)}
 .face{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.16);box-shadow:0 4px 12px rgba(33,60,100,.17)}
 .panel{border:1px solid #e0e8f2;box-shadow:0 3px 10px rgba(37,59,90,.09)}
 .big{box-shadow:0 4px 11px rgba(37,59,90,.15);text-shadow:none}
