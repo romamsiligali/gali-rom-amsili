@@ -108,23 +108,39 @@ h2{font-size:1.6rem;text-align:center;margin:6px 0 16px}
 .hw-submit-link:hover{background:#1e7040}
 .hw-submit-link:focus-visible{outline:4px solid #2563eb;outline-offset:3px}
 
-/* עיצוב בהיר ומרוכך קבוע, גם במכשירים במצב כהה. */
-:root{--bg:#f7fafc;--ink:#29394d;--card:#ffffff;--hdr:#dbeef1;--hdr-ink:#294b60;--shadow:rgba(31,53,77,.09);color-scheme:light}
-header{border-bottom:2px solid #c6dfe6}
-header h1{text-shadow:none}
-.round{color:#355c73;box-shadow:0 2px 5px var(--shadow)}
-.card{color:#273e50;text-shadow:none;box-shadow:0 3px 12px var(--shadow);border:1px solid rgba(35,67,85,.09)}
-.c0{background:#fcebdc}.c1{background:#eee7fa}.c2{background:#ddebfa}.c3{background:#f7e6ee}.c4{background:#e3f2e9}
-.face{color:#273e50;text-shadow:none;box-shadow:0 3px 12px var(--shadow)}
-.panel{border:1px solid #e1e9ef;box-shadow:0 2px 8px var(--shadow)}
-.big{box-shadow:0 3px 8px var(--shadow);text-shadow:none}
-.blue{background:#39759c}.green{background:#2d8064}.purple{background:#725d9c}.red{background:#ae5c67}
-.opt{border:2px solid #d6deeb;box-shadow:none}
-.row button{background:#6a6490;box-shadow:0 2px 5px var(--shadow)}
-.watch-link{background:#ae5c67}
-.guided-track{background:#eee6f8}
-.guided-track div{background:#7e6aab}
-.guided-try{border-color:#9281b8}
-.hw-picker{border:1px solid #e1e9ef}
-.hw-submit-link{background:#2d8064}
-.hw-submit-link:hover{background:#236d55}
+/* עיצוב מואר ואנרגטי לכיתה ו: רקע נקי וכרטיסים בצבעים חיים. */
+:root{--bg:#f6f9ff;--ink:#26354a;--card:#ffffff;--hdr:#ffd269;--hdr-ink:#27364a;--shadow:rgba(34,54,85,.13);color-scheme:light}
+body{background:var(--bg)}
+header{border-bottom:3px solid #ffb64b}
+header h1{text-shadow:none;letter-spacing:.15px}
+.round{color:#315f85;box-shadow:0 2px 7px var(--shadow)}
+.card{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.18);border:1px solid rgba(18,38,65,.08);box-shadow:0 5px 13px rgba(33,60,100,.17);transition:transform .15s ease,box-shadow .15s ease}
+.card small{color:#fff;opacity:.95}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(33,60,100,.20)}
+.card:active{transform:translateY(1px)}
+.c0{background:linear-gradient(145deg,#d84d1a,#b93f14)}
+.c1{background:linear-gradient(145deg,#7b49dd,#6134bb)}
+.c2{background:linear-gradient(145deg,#2380cd,#15639f)}
+.c3{background:linear-gradient(145deg,#cb3988,#a82871)}
+.c4{background:linear-gradient(145deg,#079a81,#087562)}
+.grid>.card:nth-child(6){background:linear-gradient(145deg,#0b8fa8,#076d8d)}
+.face{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.16);box-shadow:0 4px 12px rgba(33,60,100,.17)}
+.panel{border:1px solid #e0e8f2;box-shadow:0 3px 10px rgba(37,59,90,.09)}
+.big{box-shadow:0 4px 11px rgba(37,59,90,.15);text-shadow:none}
+.blue{background:#1769b3}.green{background:#147d57}.purple{background:#6d43c0}.red{background:#b83b59}
+.opt{border:2px solid #cbdcee;box-shadow:none}
+.opt:hover{border-color:#4589c3;background:#f2f8ff}
+.opt.ok{background:#147d57;border-color:#147d57;color:#fff}
+.opt.no{background:#b83b59;border-color:#b83b59;color:#fff}
+.row button{background:#6554a6;box-shadow:0 3px 7px var(--shadow)}
+.watch-link{background:#b83b59}
+.stars{color:#ac4a17}
+.guided-track{background:#dedcf5}
+.guided-track div{background:#7652cb}
+.guided-try{border-color:#7652cb}
+.guided-back{background:#e4e0fa;color:#30244f}
+.guided-next{background:#147d57}
+.hw-picker{border:1px solid #dee7f2}
+.hw-submit-link{background:#147d57}
+.hw-submit-link:hover{background:#096c48}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover,.card:active{transform:none}}
