@@ -156,7 +156,6 @@ step('אמון, אחריות ושיפוט מורכב','ט׳ כולו','הפרק 
 const three=[ch8,ch9a,ch9b];
 const titles=new Set(bible.topics[0].lessons.map(l=>l.name));
 bible.topics[0].lessons.unshift(...three.filter(l=>!titles.has(l.name)));
-if(typeof MORE_HOMEWORK==="undefined")var MORE_HOMEWORK={};
 const Homework={
  "יהושע ח׳ | מהכישלון בעי לברית בהר עיבל":{
  a:[
