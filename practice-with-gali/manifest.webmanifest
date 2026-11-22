@@ -6,8 +6,8 @@
   "start_url": "/gali-rom-amsili/practice-with-gali/",
   "scope": "/gali-rom-amsili/practice-with-gali/",
   "display": "standalone",
-  "background_color": "#291f37",
-  "theme_color": "#ce8a1b",
+  "background_color": "#f7fafc",
+  "theme_color": "#dbeef1",
   "dir": "rtl",
   "lang": "he",
   "categories": [
