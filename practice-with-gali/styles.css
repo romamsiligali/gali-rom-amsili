@@ -41,3 +41,65 @@ h2{font-size:1.6rem;text-align:center;margin:6px 0 16px}
 .movie-mark{font-size:.83rem;font-weight:600;color:var(--ink);background:var(--bg);border-radius:12px;padding:2px 9px;display:inline-block;margin-inline-start:4px;text-shadow:none}
 @media (prefers-reduced-motion:reduce){.flipin{transition:none}}
 @media print{header,.noprint,body::before{display:none}body{background:#fff;color:#000}}
+
+
+/* מסלול למידה מדורג לנושא משפטים */
+.guided{max-width:740px;margin:auto}
+.guided-top{display:flex;justify-content:space-between;font-weight:700;font-size:.88rem;margin:8px 0}
+.guided-track{height:9px;background:#e2d5f2;border-radius:99px;overflow:hidden;margin-bottom:20px}
+.guided-track div{height:100%;background:#8b5cf6;transition:width .2s}
+.guided-body p{margin-top:0}
+.guided-example{border-right:4px solid #8b5cf6;background:var(--bg);border-radius:10px;margin:13px 0;padding:12px}
+.guided-example strong{display:block}
+.guided-example p{margin:7px 0 0;line-height:1.55}
+.guided-tip{background:var(--bg);border-radius:12px;padding:12px;margin:14px 0 0!important}
+.guided-try{background:var(--card);border:2px solid #8b5cf6;border-radius:15px;padding:12px 16px;margin:14px 0}
+.guided-try summary{cursor:pointer;font-weight:700}
+.guided-try>div{padding:12px 0 2px}
+.guided-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.guided-nav button{font-family:inherit;padding:14px 10px;border:none;border-radius:13px;font-size:1rem;font-weight:700}
+.guided-back{background:#e2d5f2;color:#2d2438}
+.guided-next{background:#2f9e5a;color:#fff}
+.guided-back:disabled{opacity:.5;cursor:not-allowed}
+.guided-nav button:focus-visible,.hw-buttons button:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+
+/* דפי עבודה מלאים, אחד מתוך שניים לכל שיעור */
+.hw-picker{background:var(--card);padding:14px;border-radius:18px;margin-bottom:14px}
+.hw-picker>p{margin:5px 0 12px}
+.hw-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}
+.hw-buttons button{font:700 .98rem inherit;font-family:inherit;border:2px solid #a1a1aa;background:var(--card);color:var(--ink);border-radius:14px;padding:14px 6px;cursor:pointer}
+.hw-buttons button.active{border-color:#2f80d6;background:#e1efff;color:#1d3d69}
+.hw-page{background:#fff;color:#222;border:2px solid #dedede;border-radius:17px;padding:18px;margin:10px 0}
+.hw-page h2{font-size:1.6rem;margin:0 0 5px}
+.hw-subject{text-align:center;font-weight:700;margin:4px 0}
+.hw-page h3{text-align:center;font-size:1.15rem;margin:8px 0 16px}
+.hw-identity{display:flex;justify-content:space-between;gap:16px;margin:13px 0 16px;font-size:.92rem}
+.hw-instructions{background:#f1f5f9;padding:11px;border-radius:10px;font-size:.9rem;line-height:1.5}
+.hw-questions{padding-right:27px}
+.hw-questions>li{padding:4px 0 17px;border-bottom:1px solid #e5e7eb;break-inside:avoid}
+.hw-question-text{font-weight:700;line-height:1.65;white-space:pre-wrap;margin:8px 0}
+.hw-answer{display:block;width:100%;font:1rem Arial,sans-serif;color:#222;background:#fff;border:1px solid #acb6c4;border-radius:10px;padding:11px;min-height:95px;resize:vertical;direction:rtl}
+.hw-print-answer{display:none;white-space:pre-wrap;line-height:1.7}
+.hw-lines{display:none}
+.hw-footer{font-weight:700;border-top:1px solid #c9cdd3;padding-top:12px;margin-top:8px;font-size:.93rem}
+.hw-bottom{margin:15px 0}
+@media (max-width:400px){.hw-buttons{grid-template-columns:1fr}.hw-identity{flex-wrap:wrap}.hw-page{padding:12px}.guided-nav{gap:7px}}
+@media print{
+ @page{size:A4;margin:14mm}
+ html,body{background:#fff!important;color:#000!important;font-size:12px!important}
+ header,body::before,.hw-picker,.hw-bottom,.guided,.noprint{display:none!important}
+ main{max-width:none;padding:0!important;margin:0!important}
+ .hw-page{border:0;border-radius:0;box-shadow:none;padding:0;margin:0}
+ .hw-page h2{font-size:19px}
+ .hw-page h3{font-size:15px}
+ .hw-instructions{font-size:12px;background:none;border:1px solid #ccc}
+ .hw-questions>li{page-break-inside:avoid;break-inside:avoid;padding:5px 0 8px}
+ .hw-question-text{font-size:12px}
+ .hw-answer{display:none!important}
+ .hw-print-answer{display:block;font-size:12px}
+ .hw-print-answer:empty{display:none}
+ .hw-lines{display:block;height:54px;border-bottom:1px solid #909090;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 25px,#c7c7c7 26px,transparent 27px);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .hw-footer{font-size:11px}
+}
