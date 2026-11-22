@@ -150,8 +150,8 @@ function readAny(l){
  else if(l.overview&&l.overview.length){h+="<div class='panel'><ul style='padding-right:22px'>"+l.overview.map(x=>"<li style='margin-bottom:10px'>"+safeText(x)+"</li>").join("")+"</ul></div>";}
  // מושג שהוסבר בחלק "לומדים ומבינים" אינו חוזר שוב באותו מסך.
  var conceptCards=(l.cards||[]).slice();
- var alreadyDefined=(l.reading||[]).map(r=>String(r[0]||'').replace(/\\s*\\([^)]*\\)/g,'').trim());
- conceptCards=conceptCards.filter(c=>!alreadyDefined.includes(String(c[0]||'').replace(/\\s*\\([^)]*\\)/g,'').trim()));
+ var alreadyDefined=(l.reading||[]).map(r=>String(r[0]||'').split(' (')[0].trim());
+ conceptCards=conceptCards.filter(c=>!alreadyDefined.includes(String(c[0]||'').split(' (')[0].trim()));
  var isVocabularyLesson=l.name==='מילים נרדפות, הפכים, שורש, משפחת מילים, דימוי והאנשה';
  if(isVocabularyLesson){
   // שש ההגדרות מופיעות פעם אחת; נשאיר רק עצות יישומיות חדשות.
