@@ -48,6 +48,8 @@ var SUBJECT_DISPLAY={
 };
 home=function(){
  var active=SUBJECTS.filter(s=>s.topics&&s.topics.length>0);
+ var order=['שפה','מדעים','היסטוריה','תנ"ך','מורשת','תקשורת'];
+ active.sort((a,b)=>order.indexOf(a.name)-order.indexOf(b.name));
  var h="<section class='home-screen' aria-label='מסך בחירת מקצוע'>";
  h+="<div class='home-hero'><span class='hero-orbit hero-orbit-a' aria-hidden='true'></span><span class='hero-orbit hero-orbit-b' aria-hidden='true'></span>";
  h+="<span class='hero-tag'>✦ כיתה ו׳1</span>";
