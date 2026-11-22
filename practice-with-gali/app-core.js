@@ -90,7 +90,7 @@ function cards(l){
  var i=0,C=l.cards;
  function step(){
   var c=C[i];
-  show("<p class=note>כרטיס "+(i+1)+" מתוך "+C.length+"</p><div class=flip id=f tabindex=0 role=button aria-label='הפכו את הכרטיס'><div class=flipin><div class='face c1'>"+c[0]+"</div><div class='face back c4'>"+c[1]+"</div></div></div><div class=row><button id=nx>הבא</button><button id=pv>הקודם</button></div>","כרטיסיות");
+  show("<p class=note>כרטיס "+(i+1)+" מתוך "+C.length+"</p><div class=flip id=f tabindex=0 role=button aria-label='הפכו את הכרטיס'><div class=flipin><div class='face c1'>"+c[0]+"</div><div class='face back c4'>"+c[1]+"</div></div></div><div class=row dir='rtl'><button id=pv>הקודם</button><button id=nx>הבא</button></div>","כרטיסיות");
   var f=document.getElementById("f");
   f.onclick=function(){f.classList.toggle("on")};
   f.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();f.classList.toggle("on")}};
