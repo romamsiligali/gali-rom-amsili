@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>תרגול עם גלי</title>
+<meta name="description" content="לומדים ומתרגלים עם גלי: שפה, מדעים, תנ״ך והיסטוריה לכיתה ו׳">
+<meta name="theme-color" content="#ce8a1b">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="תרגול עם גלי">
 <link rel="stylesheet" href="styles.css?v=20261122i">
 </head>
 <body>
@@ -24,5 +32,14 @@
 <script src="bible-deepening.js?v=20261122d"></script>
 <script src="homework-progression.js?v=20261122h"></script>
 <script src="homework-ui.js?v=20261122i"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js', {scope: './'}).catch(function (err) {
+      console.warn('App service worker not available:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>
