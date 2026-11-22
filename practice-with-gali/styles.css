@@ -1,6 +1,5 @@
 
 :root{--bg:#fffaf0;--ink:#2d2438;--card:#fff;--hdr:#ffb938;--hdr-ink:#fff;--shadow:rgba(0,0,0,.18);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1828;--ink:#f6efff;--card:#2b2438;--hdr:#c98a14;--shadow:rgba(0,0,0,.5);color-scheme:dark}}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Rubik","Heebo",Arial,sans-serif;font-size:18px;line-height:1.5}
@@ -108,3 +107,24 @@ h2{font-size:1.6rem;text-align:center;margin:6px 0 16px}
 .hw-submit-link{display:block;text-align:center;background:#24864c;color:#fff;text-decoration:none;font-weight:800;font-family:inherit;font-size:1.15rem;line-height:1.35;border-radius:18px;padding:16px 12px;box-shadow:0 4px 0 rgba(0,0,0,.14);margin:10px 0 8px}
 .hw-submit-link:hover{background:#1e7040}
 .hw-submit-link:focus-visible{outline:4px solid #2563eb;outline-offset:3px}
+
+/* עיצוב בהיר ומרוכך קבוע, גם במכשירים במצב כהה. */
+:root{--bg:#f7fafc;--ink:#29394d;--card:#ffffff;--hdr:#dbeef1;--hdr-ink:#294b60;--shadow:rgba(31,53,77,.09);color-scheme:light}
+header{border-bottom:2px solid #c6dfe6}
+header h1{text-shadow:none}
+.round{color:#355c73;box-shadow:0 2px 5px var(--shadow)}
+.card{color:#273e50;text-shadow:none;box-shadow:0 3px 12px var(--shadow);border:1px solid rgba(35,67,85,.09)}
+.c0{background:#fcebdc}.c1{background:#eee7fa}.c2{background:#ddebfa}.c3{background:#f7e6ee}.c4{background:#e3f2e9}
+.face{color:#273e50;text-shadow:none;box-shadow:0 3px 12px var(--shadow)}
+.panel{border:1px solid #e1e9ef;box-shadow:0 2px 8px var(--shadow)}
+.big{box-shadow:0 3px 8px var(--shadow);text-shadow:none}
+.blue{background:#39759c}.green{background:#2d8064}.purple{background:#725d9c}.red{background:#ae5c67}
+.opt{border:2px solid #d6deeb;box-shadow:none}
+.row button{background:#6a6490;box-shadow:0 2px 5px var(--shadow)}
+.watch-link{background:#ae5c67}
+.guided-track{background:#eee6f8}
+.guided-track div{background:#7e6aab}
+.guided-try{border-color:#9281b8}
+.hw-picker{border:1px solid #e1e9ef}
+.hw-submit-link{background:#2d8064}
+.hw-submit-link:hover{background:#236d55}
