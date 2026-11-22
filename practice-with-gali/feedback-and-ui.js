@@ -148,16 +148,19 @@ function readAny(l){
  var h="<h2>לומדים ומבינים</h2>";
  if(l.reading&&l.reading.length){l.reading.forEach(r=>h+="<div class='panel'><h3>"+safeText(r[0])+"</h3><p>"+safeText(r[1])+"</p><p class='note' style='text-align:right'>"+safeText(r[2])+"</p></div>");}
  else if(l.overview&&l.overview.length){h+="<div class='panel'><ul style='padding-right:22px'>"+l.overview.map(x=>"<li style='margin-bottom:10px'>"+safeText(x)+"</li>").join("")+"</ul></div>";}
- var conceptCards=(l.cards||[]);
+ // מושג שהוסבר בחלק "לומדים ומבינים" אינו חוזר שוב באותו מסך.
+ var conceptCards=(l.cards||[]).slice();
+ var alreadyDefined=(l.reading||[]).map(r=>String(r[0]||'').replace(/\\s*\\([^)]*\\)/g,'').trim());
+ conceptCards=conceptCards.filter(c=>!alreadyDefined.includes(String(c[0]||'').replace(/\\s*\\([^)]*\\)/g,'').trim()));
  var isVocabularyLesson=l.name==='מילים נרדפות, הפכים, שורש, משפחת מילים, דימוי והאנשה';
  if(isVocabularyLesson){
-  // The six definitions are already in l.reading. Keep only useful additional detection tips.
-  conceptCards=conceptCards.filter(c=>c[0]==='איך מזהים דימוי?'||c[0]==='איך מזהים האנשה?');
+  // שש ההגדרות מופיעות פעם אחת; נשאיר רק עצות יישומיות חדשות.
+  conceptCards=conceptCards.filter(c=>String(c[0]).startsWith('איך מזהים'));
  }else{
   conceptCards=conceptCards.slice(0,7);
  }
  if(conceptCards.length){
-  h+="<h3>"+(isVocabularyLesson?"טיפים לזיהוי":"מושגים שכדאי להכיר")+"</h3>";
+  h+="<h3>"+(isVocabularyLesson?"איך מזהים? טיפים לתרגול":"מושגים שכדאי להכיר")+"</h3>";
   conceptCards.forEach(c=>h+="<div class='panel'><b>"+safeText(c[0])+"</b><p>"+safeText(c[1])+"</p></div>");
  }
  h+="<div class='panel note'>אחרי הלמידה חזרו לשיעור ובחרו ״תרגול עם הסברים״.</div>";
