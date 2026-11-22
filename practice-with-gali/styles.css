@@ -193,3 +193,39 @@ header h1{font-size:clamp(1.15rem,3.8vw,1.4rem);color:#45326e}
 @media(max-width:350px){.home-grid{grid-template-columns:1fr}.home-grid .subject-tile{min-height:140px}}
 @media(prefers-reduced-motion:reduce){.home-grid .subject-tile{transition:none}.home-grid .subject-tile:hover,.home-grid .subject-tile:active{transform:none}}
 @media print{body{background:#fff!important}.home-screen{display:none!important}}
+
+/* מסך בית המבוסס על האיור המקורי שאושר. אזורי הלחיצה מתאימים לקובץ 941x1672. */
+.illustrated-home{position:relative;width:100%;max-width:720px;margin:0 auto;line-height:0;isolation:isolate}
+.illustrated-home .illustrated-image{display:block;width:100%;height:auto;max-width:100%;border-radius:24px;box-shadow:0 13px 30px rgba(44,50,117,.13)}
+.illustrated-hit{position:absolute;z-index:2;display:block;opacity:1;background:transparent;border:0;border-radius:23px;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(88,51,178,.22);transition:background-color .15s ease,box-shadow .15s ease}
+.illustrated-hit:hover{background:rgba(255,255,255,.065);box-shadow:inset 0 0 0 3px rgba(255,255,255,.7),0 0 0 2px rgba(91,65,166,.18)}
+.illustrated-hit:active{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 4px rgba(255,255,255,.75)}
+.illustrated-hit:focus-visible{outline:4px solid #2039a4;outline-offset:-2px;background:rgba(255,255,255,.12)}
+.illustrated-home .art-science{left:3%;top:24.55%;width:45.1%;height:16.1%}
+.illustrated-home .art-hebrew{left:50.6%;top:24.55%;width:46.2%;height:16.1%}
+.illustrated-home .art-history{left:3%;top:41.52%;width:45.1%;height:16.1%}
+.illustrated-home .art-bible{left:50.6%;top:41.52%;width:46.2%;height:16.1%}
+.illustrated-home .art-communication{left:3%;top:58.48%;width:45.1%;height:16.55%}
+.illustrated-home .art-heritage{left:50.6%;top:58.48%;width:46.2%;height:16.55%}
+.illustrated-home .art-practice{left:5%;top:76.48%;width:90%;height:10.3%;border-radius:44px}
+.illustrated-home .art-submit{left:3%;top:88.25%;width:45.1%;height:9.35%;border-radius:42px}
+.illustrated-home .art-tasks{left:50.6%;top:88.25%;width:46.2%;height:9.35%;border-radius:42px}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+body:has(.illustrated-home) header{display:none}
+body:has(.illustrated-home) main{max-width:760px;padding:8px 12px 28px}
+body:has(.illustrated-home){background:linear-gradient(145deg,#dff3ff 0%,#f7f3ff 42%,#f7f9ff 100%)}
+.illustrated-fallback{line-height:1.5;margin:12px auto 30px;padding:20px;border-radius:22px;background:#fff}
+.illustrated-fallback[hidden]{display:none!important}
+.illustrated-fallback .grid{margin:15px 0}
+.illustrated-fallback .card{min-height:112px}
+.assignment-hub{line-height:1.5}
+.assignment-topic{font-weight:700;margin:15px 0 9px;color:#51488a}
+.assignment-status{display:block;font-weight:600;color:#695a99;margin-top:6px}
+@media(max-width:600px){
+ body:has(.illustrated-home) main{padding:0 0 18px}
+ .illustrated-home .illustrated-image{border-radius:0;box-shadow:none}
+ .illustrated-hit{border-radius:15px}
+ .illustrated-home .art-practice,.illustrated-home .art-tasks,.illustrated-home .art-submit{border-radius:22px}
+}
+@media(prefers-reduced-motion:reduce){.illustrated-hit{transition:none}}
+@media print{.illustrated-home{display:none!important}}
