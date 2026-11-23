@@ -148,20 +148,20 @@ function readAny(l){
  var h="<h2>לומדים ומבינים</h2>";
  if(l.reading&&l.reading.length){l.reading.forEach(r=>h+="<div class='panel'><h3>"+safeText(r[0])+"</h3><p>"+safeText(r[1])+"</p><p class='note' style='text-align:right'>"+safeText(r[2])+"</p></div>");}
  else if(l.overview&&l.overview.length){h+="<div class='panel'><ul style='padding-right:22px'>"+l.overview.map(x=>"<li style='margin-bottom:10px'>"+safeText(x)+"</li>").join("")+"</ul></div>";}
- // מושג שהוסבר בחלק "לומדים ומבינים" אינו חוזר שוב באותו מסך.
- var conceptCards=(l.cards||[]).slice();
- var alreadyDefined=(l.reading||[]).map(r=>String(r[0]||'').split(' (')[0].trim());
- conceptCards=conceptCards.filter(c=>!alreadyDefined.includes(String(c[0]||'').split(' (')[0].trim()));
+ // מושגים שהוסברו ב"לומדים ומבינים" אינם חוזרים שוב באותו מסך.
  var isVocabularyLesson=l.name==='מילים נרדפות, הפכים, שורש, משפחת מילים, דימוי והאנשה';
  if(isVocabularyLesson){
-  // שש ההגדרות מופיעות פעם אחת; נשאיר רק עצות יישומיות חדשות.
-  conceptCards=conceptCards.filter(c=>String(c[0]).startsWith('איך מזהים'));
+  // במקום לחזור על שש ההגדרות, מוסיפים תרגול השוואתי אחד עם תשובה מוסתרת.
+  h+="<section class='panel vocabulary-check'><h3>בוחנים את ההבנה</h3>";
+  h+="<p>קראו את שני המשפטים: <strong>״העץ רקד ברוח״</strong> ו־<strong>״ענפי העץ התנופפו כמו דגלים״</strong>. מהו דימוי ומהי האנשה? הסבירו מה עזר לכם להבחין.</p>";
+  h+="<details><summary>בדקו את עצמכם</summary><p>״העץ רקד ברוח״ הוא האנשה, כי לעץ מיוחסת פעולה אנושית. ״ענפי העץ התנופפו כמו דגלים״ הוא דימוי, כי הענפים מושווים לדגלים.</p></details></section>";
  }else{
-  conceptCards=conceptCards.slice(0,7);
- }
- if(conceptCards.length){
-  h+="<h3>"+(isVocabularyLesson?"איך מזהים? טיפים לתרגול":"מושגים שכדאי להכיר")+"</h3>";
-  conceptCards.forEach(c=>h+="<div class='panel'><b>"+safeText(c[0])+"</b><p>"+safeText(c[1])+"</p></div>");
+  var alreadyDefined=(l.reading||[]).map(r=>String(r[0]||'').split(' (')[0].trim());
+  var conceptCards=(l.cards||[]).filter(c=>!alreadyDefined.includes(String(c[0]||'').split(' (')[0].trim())).slice(0,7);
+  if(conceptCards.length){
+   h+="<h3>מושגים שכדאי להכיר</h3>";
+   conceptCards.forEach(c=>h+="<div class='panel'><b>"+safeText(c[0])+"</b><p>"+safeText(c[1])+"</p></div>");
+  }
  }
  h+="<div class='panel note'>אחרי הלמידה חזרו לשיעור ובחרו ״תרגול עם הסברים״.</div>";
  show(h,"לומדים");
