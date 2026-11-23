@@ -229,3 +229,12 @@ body:has(.illustrated-home){background:linear-gradient(145deg,#dff3ff 0%,#f7f3ff
 }
 @media(prefers-reduced-motion:reduce){.illustrated-hit{transition:none}}
 @media print{.illustrated-home{display:none!important}}
+
+/* בדיקת הבנה במקום הגדרות מילוניות כפולות */
+.vocabulary-check{border:2px solid #b9dbe9;background:#f7fcff}
+.vocabulary-check h3{margin:0 0 12px;color:#1c537b}
+.vocabulary-check p{line-height:1.7}
+.vocabulary-check details{border-radius:13px;background:#e7f3fc;padding:11px 14px;margin-top:12px}
+.vocabulary-check summary{font-weight:800;cursor:pointer;color:#164971}
+.vocabulary-check details p{margin:10px 0 0}
+@media print{.vocabulary-check{break-inside:avoid}}
