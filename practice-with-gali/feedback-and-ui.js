@@ -148,6 +148,22 @@ function readAny(l){
  var h="<h2>לומדים ומבינים</h2>";
  if(l.reading&&l.reading.length){l.reading.forEach(r=>h+="<div class='panel'><h3>"+safeText(r[0])+"</h3><p>"+safeText(r[1])+"</p><p class='note' style='text-align:right'>"+safeText(r[2])+"</p></div>");}
  else if(l.overview&&l.overview.length){h+="<div class='panel'><ul style='padding-right:22px'>"+l.overview.map(x=>"<li style='margin-bottom:10px'>"+safeText(x)+"</li>").join("")+"</ul></div>";}
+ // הסבר מתורגל וקצר לשלושת חלקי הדיבר הבסיסיים.
+ if(l.name==='שם עצם, שם תואר ופועל'){
+  h+="<section class='panel grammar-example' aria-label='דוגמה לניתוח משפט'><h3>מנסים יחד: מי עושה מה?</h3>";
+  h+="<p class='grammar-sentence'>הילדה <strong>הסקרנית</strong> <u>קוראת</u> ספר.</p>";
+  h+="<p><strong>שמות עצם:</strong> הילדה, ספר. <strong>שם תואר:</strong> הסקרנית. <strong>פועל:</strong> קוראת.</p>";
+  h+="<details class='grammar-check'><summary>בדקו את עצמכם במשפט נוסף</summary><p>״הכלב הקטן רץ בחצר״. מהו שם העצם, שם התואר והפועל?</p><p><strong>תשובה:</strong> הכלב והחצר הם שמות עצם, ״הקטן״ הוא שם תואר, ״רץ״ הוא פועל.</p></details></section>";
+ }
+ // להרחבה בלבד: לא נכלל במבדק של שלושת המושגים המרכזיים.
+ if(l.extraGrammar&&l.extraGrammar.length){
+  h+="<details class='grammar-more'><summary>רוצים להרחיב? מכירים עוד חלקי דיבר</summary>";
+  h+="<p class='note' style='text-align:right'>להעשרה בלבד. התחילו בשם עצם, שם תואר ופועל ורק אחר כך עברו למושגים הנוספים.</p>";
+  l.extraGrammar.forEach(function(r){
+   h+="<div class='grammar-extra-item'><strong>"+safeText(r[0])+"</strong><p>"+safeText(r[1])+"</p><p class='grammar-example-text'>"+safeText(r[2])+"</p></div>";
+  });
+  h+="</details>";
+ }
  // מושגים שהוסברו ב"לומדים ומבינים" אינם חוזרים שוב באותו מסך.
  var isVocabularyLesson=l.name==='מילים נרדפות, הפכים, שורש, משפחת מילים, דימוי והאנשה';
  if(isVocabularyLesson){
